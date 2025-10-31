@@ -38,8 +38,9 @@ public class OrderServlet extends HttpServlet {
         }
 
         Order order = new Order(customerName, coffees);
-        
-        //save the order in database
+
+        double totalPrice = order.calculateFinalTotal(); 
+
         StringBuilder coffeeList = new StringBuilder();
         for (Coffee c : coffees) {
             coffeeList.append(c.getName()).append(", ");
@@ -47,10 +48,10 @@ public class OrderServlet extends HttpServlet {
         if (coffeeList.length() > 0)
             coffeeList.setLength(coffeeList.length() - 2);
 
-        double totalPrice = order.calculateTotal();
         model.DBHelper.saveOrder(customerName, coffeeList.toString(), totalPrice);
-        
+
         request.setAttribute("order", order);
         request.getRequestDispatcher("bill.jsp").forward(request, response);
+
     }
 }
