@@ -18,7 +18,26 @@ public class Order {
     public String getCustomerName() { return customerName; }
     public List<Coffee> getCoffees() { return coffees; }
 
-    public double calculateTotal() {
+    //total without discount
+    public double calculateOriginalTotal() {
         return coffees.stream().mapToDouble(Coffee::getPrice).sum();
+    }
+
+    //check if discount applies
+    public boolean hasDiscount() {
+        return calculateOriginalTotal() > 7.0;
+    }
+
+    //discount amount
+    public double getDiscountAmount() {
+        if (hasDiscount()) {
+            return calculateOriginalTotal() * 0.05;
+        }
+        return 0.0;
+    }
+
+    //Final total after discount
+    public double calculateFinalTotal() {
+        return calculateOriginalTotal() - getDiscountAmount();
     }
 }
