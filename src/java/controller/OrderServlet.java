@@ -34,6 +34,7 @@ public class OrderServlet extends HttpServlet {
                 case "V60": coffees.add(new Coffee("V60", 2.1)); break;
                 case "Arabic Coffee": coffees.add(new Coffee("Arabic Coffee", 2.5)); break;
                 case "Matcha": coffees.add(new Coffee("Matcha", 2.0)); break;
+                case "Cold Brew": coffees.add(new Coffee("Cold Brew", 2.5)); break; 
             }
         }
 
